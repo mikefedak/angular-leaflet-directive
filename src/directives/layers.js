@@ -175,6 +175,12 @@ angular.module("leaflet-directive").directive('layers', function ($log, $q, leaf
                             leafletLayers.overlays[newName].setData(newOverlayLayers[newName].data);
                             leafletLayers.overlays[newName].update();
                         }
+                        
+                        //Send esri layer to back 
+                          if (newOverlayLayers[newName].visible && map._loaded && newOverlayLayers[newName].type === "agsDynamic") {
+                            leafletLayers.overlays[newName].bringToBack();
+                        }
+                        
                     }
 
                     // Only add the layers switch selector control if we have more than one baselayer + overlay
